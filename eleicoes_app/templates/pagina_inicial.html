@@ -12,12 +12,13 @@
             <h1>Sistema Eleitoral</h1>
             <nav>
                 <ul>
-                    <li><a href="{% url 'cadastrar_candidato' %}">Cadastrar Candidato</a></li>
-                    <li><a href="{% url 'cadastrar_cargo' %}">Cadastrar Cargo</a></li>
-                    <li><a href="{% url 'cadastrar_eleicao' %}">Cadastrar Eleição</a></li>
-                    <li><a href="{% url 'cadastrar_chapa' %}">Cadastrar Chapa</a></li>
-                    <li><a href="{% url 'cadastrar_candidato_chapa' %}">Cadastrar Candidato na Chapa</a></li>
-                    <li><a href="{% url 'cadastrar_eleitor' %}">Cadastrar Eleitor</a></li>
+                    <li><a href="{% url 'lista_candidatos' %}">Lista de Candidatos</a></li>
+                    <li><a href="{% url 'lista_cargos' %}">Lista de Cargos</a></li>
+                    <li><a href="{% url 'lista_eleicoes' %}">Lista de Eleições</a></li>
+                    <li><a href="{% url 'lista_chapas' %}">Lista de Chapas</a></li>
+                    <li><a href="{% url 'lista_candidatos_chapa' %}">Lista de Candidatos nas Chapas</a></li>
+                    <li><a href="{% url 'lista_eleitores' %}">Lista de Eleitores</a></li>
+                    
                     <li><a href="{% url 'iniciar_votacao' %}">Iniciar Votação</a></li>
                     <li><a href="{% url 'gerar_relatorio_inicializacao' %}">Gerar Relatório de Inicialização</a></li>
                     <li><a href="{% url 'votar' %}">Votar</a></li>

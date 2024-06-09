@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Chapas</title>
+</head>
+<body>
+    <h1>Lista de Chapas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome da Chapa</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chapa in chapas %}
+                <tr>
+                    <td>{{ chapa.nome }}</td>
+                    <td>{{ chapa.descricao }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <li><a href="{% url 'cadastrar_chapa' %}">Cadastrar Chapa</a></li>
+</body>
+</html>

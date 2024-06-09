@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Eleições</title>
+</head>
+<body>
+    <h1>Lista de Eleições</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome da Eleição</th>
+                <th>Data de Início</th>
+                <th>Data de Fim</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for eleicao in eleicoes %}
+                <tr>
+                    <td>{{ eleicao.nome }}</td>
+                    <td>{{ eleicao.data_inicio }}</td>
+                    <td>{{ eleicao.data_fim }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <li><a href="{% url 'cadastrar_eleicao' %}">Cadastrar Eleição</a></li>
+</body>
+</html>

@@ -4,6 +4,12 @@ from . import views
 urlpatterns = [
     path('', views.pagina_inicial, name='pagina_inicial'), 
     path('candidatos/', views.cadastrar_candidato, name='cadastrar_candidato'),
+    path('lista/', views.lista_candidatos, name='lista_candidatos'),
+    path('lista_cargos/', views.lista_cargos, name='lista_cargos'),
+    path('lista_eleicoes/', views.lista_eleicoes, name='lista_eleicoes'),
+    path('lista_chapas/', views.lista_chapas, name='lista_chapas'),
+    path('lista_candidatos_chapa/', views.lista_candidatos_chapa, name='lista_candidatos_chapa'),
+    path('lista_eleitores/', views.lista_eleitores, name='lista_eleitores'),
     path('cargos/', views.cadastrar_cargo, name='cadastrar_cargo'),
     path('eleicoes/', views.cadastrar_eleicao, name='cadastrar_eleicao'),
     path('chapas/', views.cadastrar_chapa, name='cadastrar_chapa'),

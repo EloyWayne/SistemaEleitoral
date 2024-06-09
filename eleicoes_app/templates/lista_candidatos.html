@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Candidatos</title>
+</head>
+<body>
+    <h1>Lista de Candidatos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Endereço</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for candidato in candidatos %}
+                <tr>
+                    <td>{{ candidato.nome }}</td>
+                    <td>{{ candidato.email }}</td>
+                    <td>{{ candidato.telefone }}</td>
+                    <td>{{ candidato.endereco }}</td>
+                    <!-- <h1>{{ candidato.nome }}</h1>
+                    <h2>{{ candidato.email }}</h2>
+                    <h3>{{ candidato.telefone }}</h3>
+                    <h4>{{ candidato.endereco }}</h4> -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <li><a href="{% url 'cadastrar_candidato' %}">Cadastrar Candidato</a></li>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Cargos</title>
+</head>
+<body>
+    <h1>Lista de Cargos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome do Cargo</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cargo in cargos %}
+                <tr>
+                    <td>{{ cargo.nome }}</td>
+                    <td>{{ cargo.descricao }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <li><a href="{% url 'cadastrar_cargo' %}">Cadastrar Cargo</a></li>
+</body>
+</html>

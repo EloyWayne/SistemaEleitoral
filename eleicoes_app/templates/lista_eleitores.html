@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Eleitores</title>
+</head>
+<body>
+    <h1>Lista de Eleitores</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for eleitor in eleitores %}
+                <tr>
+                    <td>{{ eleitor.nome }}</td>
+                    <td>{{ eleitor.email }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <li><a href="{% url 'cadastrar_eleitor' %}">Cadastrar Eleitor</a></li>
+</body>
+</html>

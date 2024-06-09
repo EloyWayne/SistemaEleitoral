@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+
+from eleicoes_app.models import Candidato, CandidatoChapa, Cargo, Chapa, Eleicao, Eleitor
 from .forms import (
     CandidatoForm, CargoForm, EleicaoForm, ChapaForm, 
     CandidatoChapaForm, EleitorForm
@@ -102,3 +104,28 @@ def gerar_relatorio_fechamento(request):
         # Logic to generate closing report
         return redirect(reverse('lista_relatorios'))
     return render(request, 'gerar_relatorio_fechamento.html')
+#####
+
+def lista_candidatos(request):
+    candidatos = Candidato.objects.all()
+    return render(request, 'lista_candidatos.html', {'candidatos': candidatos})
+
+def lista_cargos(request):
+    cargos = Cargo.objects.all()
+    return render(request, 'lista_cargos.html', {'cargos': cargos})
+
+def lista_eleicoes(request):
+    eleicoes = Eleicao.objects.all()
+    return render(request, 'lista_eleicoes.html', {'eleicoes': eleicoes})
+
+def lista_chapas(request):
+    chapas = Chapa.objects.all()
+    return render(request, 'lista_chapas.html', {'chapas': chapas})
+
+def lista_candidatos_chapa(request):
+    candidatos_chapa = CandidatoChapa.objects.all()
+    return render(request, 'lista_candidatos_chapa.html', {'candidatos_chapa': candidatos_chapa})
+
+def lista_eleitores(request):
+    eleitores = Eleitor.objects.all()
+    return render(request, 'lista_eleitores.html', {'eleitores': eleitores})

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Candidatos da Chapa</title>
+</head>
+<body>
+    <h1>Lista de Candidatos da Chapa</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Chapa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for candidato in candidatos_chapa %}
+                <tr>
+                    <td>{{ candidato.nome }}</td>
+                    <td>{{ candidato.chapa.nome }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <li><a href="{% url 'cadastrar_candidato_chapa' %}">Cadastrar Candidato na Chapa</a></li>
+</body>
+</html>
