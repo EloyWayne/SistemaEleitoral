@@ -1,0 +1,15 @@
+<!-- templates/encerrar_votacao.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Encerrar Votação</title>
+</head>
+<body>
+    <h1>Encerrar Votação</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Encerrar</button>
+    </form>
+</body>
+</html>

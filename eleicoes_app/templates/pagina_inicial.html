@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Eleitoral - Página Inicial</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Sistema Eleitoral</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'cadastrar_candidato' %}">Cadastrar Candidato</a></li>
+                    <li><a href="{% url 'cadastrar_cargo' %}">Cadastrar Cargo</a></li>
+                    <li><a href="{% url 'cadastrar_eleicao' %}">Cadastrar Eleição</a></li>
+                    <li><a href="{% url 'cadastrar_chapa' %}">Cadastrar Chapa</a></li>
+                    <li><a href="{% url 'cadastrar_candidato_chapa' %}">Cadastrar Candidato na Chapa</a></li>
+                    <li><a href="{% url 'cadastrar_eleitor' %}">Cadastrar Eleitor</a></li>
+                    <li><a href="{% url 'iniciar_votacao' %}">Iniciar Votação</a></li>
+                    <li><a href="{% url 'gerar_relatorio_inicializacao' %}">Gerar Relatório de Inicialização</a></li>
+                    <li><a href="{% url 'votar' %}">Votar</a></li>
+                    <li><a href="{% url 'encerrar_votacao' %}">Encerrar Votação</a></li>
+                    <li><a href="{% url 'gerar_relatorio_fechamento' %}">Gerar Relatório de Fechamento</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="banner">
+        <div class="container">
+            <h2>Bem-vindo à Página Inicial do Sistema Eleitoral</h2>
+            <p>Este é um sistema eleitoral desenvolvido com Django.</p>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Sistema Eleitoral. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

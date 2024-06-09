@@ -1,0 +1,15 @@
+<!-- templates/iniciar_votacao.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Votação</title>
+</head>
+<body>
+    <h1>Iniciar Votação</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Iniciar</button>
+    </form>
+</body>
+</html>

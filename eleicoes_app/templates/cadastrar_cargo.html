@@ -1,0 +1,16 @@
+<!-- templates/cadastrar_cargo.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Cargo</title>
+</head>
+<body>
+    <h1>Cadastrar Cargo</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>
