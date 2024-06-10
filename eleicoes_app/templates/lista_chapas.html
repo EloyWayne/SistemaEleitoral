@@ -2,26 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Chapas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Lista de Chapas</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome da Chapa</th>
-                <th>Descrição</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for chapa in chapas %}
+    <div class="container mt-5">
+        <h1>Lista de Chapas</h1>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
                 <tr>
-                    <td>{{ chapa.nome }}</td>
-                    <td>{{ chapa.descricao }}</td>
+                    <th>Nome</th>
+                    <th>Descrição</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <li><a href="{% url 'cadastrar_chapa' %}">Cadastrar Chapa</a></li>
+            </thead>
+            <tbody>
+                {% for chapa in chapas %}
+                    <tr>
+                        <td>{{ chapa.nome }}</td>
+                        <td>{{ chapa.descricao }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'cadastrar_chapa' %}" class="btn btn-primary">Cadastrar Chapa</a>
+    </div>
 </body>
 </html>

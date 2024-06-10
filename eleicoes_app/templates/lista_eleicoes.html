@@ -2,28 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Eleições</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Lista de Eleições</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome da Eleição</th>
-                <th>Data de Início</th>
-                <th>Data de Fim</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for eleicao in eleicoes %}
+    <div class="container mt-5">
+        <h1>Lista de Eleições</h1>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
                 <tr>
-                    <td>{{ eleicao.nome }}</td>
-                    <td>{{ eleicao.data_inicio }}</td>
-                    <td>{{ eleicao.data_fim }}</td>
+                    <th>Nome</th>
+                    <th>Data de Início</th>
+                    <th>Data de Término</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <li><a href="{% url 'cadastrar_eleicao' %}">Cadastrar Eleição</a></li>
+            </thead>
+            <tbody>
+                {% for eleicao in eleicoes %}
+                    <tr>
+                        <td>{{ eleicao.nome }}</td>
+                        <td>{{ eleicao.data_inicio }}</td>
+                        <td>{{ eleicao.data_termino }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'cadastrar_eleicao' %}" class="btn btn-primary">Cadastrar Eleição</a>
+    </div>
 </body>
 </html>

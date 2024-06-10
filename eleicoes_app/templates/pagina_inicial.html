@@ -4,39 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Eleitoral - Página Inicial</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <header>
+    <header class="bg-dark text-white py-3">
         <div class="container">
             <h1>Sistema Eleitoral</h1>
             <nav>
-                <ul>
-                    <li><a href="{% url 'lista_candidatos' %}">Lista de Candidatos</a></li>
-                    <li><a href="{% url 'lista_cargos' %}">Lista de Cargos</a></li>
-                    <li><a href="{% url 'lista_eleicoes' %}">Lista de Eleições</a></li>
-                    <li><a href="{% url 'lista_chapas' %}">Lista de Chapas</a></li>
-                    <li><a href="{% url 'lista_candidatos_chapa' %}">Lista de Candidatos nas Chapas</a></li>
-                    <li><a href="{% url 'lista_eleitores' %}">Lista de Eleitores</a></li>
-                    
-                    <li><a href="{% url 'iniciar_votacao' %}">Iniciar Votação</a></li>
-                    <li><a href="{% url 'gerar_relatorio_inicializacao' %}">Gerar Relatório de Inicialização</a></li>
-                    <li><a href="{% url 'votar' %}">Votar</a></li>
-                    <li><a href="{% url 'encerrar_votacao' %}">Encerrar Votação</a></li>
-                    <li><a href="{% url 'gerar_relatorio_fechamento' %}">Gerar Relatório de Fechamento</a></li>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'lista_candidatos' %}">Lista de Candidatos</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'lista_cargos' %}">Lista de Cargos</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'lista_eleicoes' %}">Lista de Eleições</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'lista_chapas' %}">Lista de Chapas</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'lista_candidatos_chapa' %}">Lista de Candidatos nas Chapas</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'lista_eleitores' %}">Lista de Eleitores</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'iniciar_votacao' %}">Iniciar Votação</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'gerar_relatorio_inicializacao' %}">Gerar Relatório de Inicialização</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'votar' %}">Votar</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'encerrar_votacao' %}">Encerrar Votação</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'gerar_relatorio_fechamento' %}">Gerar Relatório de Fechamento</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     
-    <section class="banner">
+    <section class="bg-primary text-white py-5 text-center">
         <div class="container">
             <h2>Bem-vindo à Página Inicial do Sistema Eleitoral</h2>
             <p>Este é um sistema eleitoral desenvolvido com Django.</p>
         </div>
     </section>
     
-    <footer>
+    <footer class="bg-dark text-white py-3 text-center">
         <div class="container">
             <p>&copy; 2024 Sistema Eleitoral. Todos os direitos reservados.</p>
         </div>

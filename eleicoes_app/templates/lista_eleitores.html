@@ -2,26 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Eleitores</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Lista de Eleitores</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for eleitor in eleitores %}
+    <div class="container mt-5">
+        <h1>Lista de Eleitores</h1>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
                 <tr>
-                    <td>{{ eleitor.nome }}</td>
-                    <td>{{ eleitor.email }}</td>
+                    <th>Nome</th>
+                    <th>Email</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <li><a href="{% url 'cadastrar_eleitor' %}">Cadastrar Eleitor</a></li>
+            </thead>
+            <tbody>
+                {% for eleitor in eleitores %}
+                    <tr>
+                        <td>{{ eleitor.nome }}</td>
+                        <td>{{ eleitor.email }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'cadastrar_eleitor' %}" class="btn btn-primary">Cadastrar Eleitor</a>
+    </div>
 </body>
 </html>

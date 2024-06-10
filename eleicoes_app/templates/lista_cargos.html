@@ -2,26 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Cargos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Lista de Cargos</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome do Cargo</th>
-                <th>Descrição</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for cargo in cargos %}
+    <div class="container mt-5">
+        <h1>Lista de Cargos</h1>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
                 <tr>
-                    <td>{{ cargo.nome }}</td>
-                    <td>{{ cargo.descricao }}</td>
+                    <th>Nome</th>
+                    <th>Descrição</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <li><a href="{% url 'cadastrar_cargo' %}">Cadastrar Cargo</a></li>
+            </thead>
+            <tbody>
+                {% for cargo in cargos %}
+                    <tr>
+                        <td>{{ cargo.nome }}</td>
+                        <td>{{ cargo.descricao }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'cadastrar_cargo' %}" class="btn btn-primary">Cadastrar Cargo</a>
+    </div>
 </body>
 </html>

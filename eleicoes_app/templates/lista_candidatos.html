@@ -2,34 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Candidatos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Lista de Candidatos</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Telefone</th>
-                <th>Endereço</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for candidato in candidatos %}
+    <div class="container mt-5">
+        <h1>Lista de Candidatos</h1>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
                 <tr>
-                    <td>{{ candidato.nome }}</td>
-                    <td>{{ candidato.email }}</td>
-                    <td>{{ candidato.telefone }}</td>
-                    <td>{{ candidato.endereco }}</td>
-                    <!-- <h1>{{ candidato.nome }}</h1>
-                    <h2>{{ candidato.email }}</h2>
-                    <h3>{{ candidato.telefone }}</h3>
-                    <h4>{{ candidato.endereco }}</h4> -->
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Endereço</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <li><a href="{% url 'cadastrar_candidato' %}">Cadastrar Candidato</a></li>
+            </thead>
+            <tbody>
+                {% for candidato in candidatos %}
+                    <tr>
+                        <td>{{ candidato.nome }}</td>
+                        <td>{{ candidato.email }}</td>
+                        <td>{{ candidato.telefone }}</td>
+                        <td>{{ candidato.endereco }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'cadastrar_candidato' %}" class="btn btn-primary">Cadastrar Candidato</a>
+    </div>
 </body>
 </html>
