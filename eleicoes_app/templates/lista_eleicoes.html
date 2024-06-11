@@ -12,7 +12,8 @@
         <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
-                    <th>Nome</th>
+                    <th>Data</th>
+                    <th>Local</th>
                     <th>Data de Início</th>
                     <th>Data de Término</th>
                 </tr>
@@ -20,9 +21,10 @@
             <tbody>
                 {% for eleicao in eleicoes %}
                     <tr>
-                        <td>{{ eleicao.nome }}</td>
-                        <td>{{ eleicao.data_inicio }}</td>
-                        <td>{{ eleicao.data_termino }}</td>
+                        <td>{{ eleicao.data_eleicao }}</td>
+                        <td>{{ eleicao.local_eleicao }}</td>
+                        <td>{{ eleicao.hora_inicial }}</td>
+                        <td>{{ eleicao.hora_final }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

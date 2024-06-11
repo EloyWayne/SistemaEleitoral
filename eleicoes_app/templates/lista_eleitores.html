@@ -13,14 +13,14 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Nome</th>
-                    <th>Email</th>
+                    <th>CPF</th>
                 </tr>
             </thead>
             <tbody>
                 {% for eleitor in eleitores %}
                     <tr>
                         <td>{{ eleitor.nome }}</td>
-                        <td>{{ eleitor.email }}</td>
+                        <td>{{ eleitor.cpf }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

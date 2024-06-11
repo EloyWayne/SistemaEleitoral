@@ -12,15 +12,15 @@
         <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
-                    <th>Nome</th>
-                    <th>Descrição</th>
+                    <th>Cargo</th>
+                    <th>Eleição</th>
                 </tr>
             </thead>
             <tbody>
                 {% for cargo in cargos %}
                     <tr>
-                        <td>{{ cargo.nome }}</td>
-                        <td>{{ cargo.descricao }}</td>
+                        <td>{{ cargo.cargo }}</td>
+                        <td>{{ cargo.eleicao.local_eleicao }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

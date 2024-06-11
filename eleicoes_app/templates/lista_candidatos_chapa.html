@@ -14,13 +14,15 @@
                 <tr>
                     <th>Nome do Candidato</th>
                     <th>Nome da Chapa</th>
+                    <th>Nome da Cargo</th>
                 </tr>
             </thead>
             <tbody>
                 {% for candidato_chapa in candidatos_chapa %}
                     <tr>
                         <td>{{ candidato_chapa.candidato.nome }}</td>
-                        <td>{{ candidato_chapa.chapa.nome }}</td>
+                        <td>{{ candidato_chapa.chapa}}</td>
+                        <td>{{ candidato_chapa.cargo}}</td>
                     </tr>
                 {% endfor %}
             </tbody>

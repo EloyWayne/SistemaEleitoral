@@ -13,14 +13,14 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Nome</th>
-                    <th>Descrição</th>
+                    <th>Eleição</th>
                 </tr>
             </thead>
             <tbody>
                 {% for chapa in chapas %}
                     <tr>
-                        <td>{{ chapa.nome }}</td>
-                        <td>{{ chapa.descricao }}</td>
+                        <td>{{ chapa.nome_chapa }}</td>
+                        <td>{{ chapa.eleicao }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

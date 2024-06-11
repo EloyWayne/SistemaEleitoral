@@ -13,8 +13,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Nome</th>
-                    <th>Email</th>
-                    <th>Telefone</th>
+                    <th>CPF</th>                
                     <th>Endereço</th>
                 </tr>
             </thead>
@@ -22,8 +21,7 @@
                 {% for candidato in candidatos %}
                     <tr>
                         <td>{{ candidato.nome }}</td>
-                        <td>{{ candidato.email }}</td>
-                        <td>{{ candidato.telefone }}</td>
+                        <td>{{ candidato.cpf }}</td>
                         <td>{{ candidato.endereco }}</td>
                     </tr>
                 {% endfor %}
