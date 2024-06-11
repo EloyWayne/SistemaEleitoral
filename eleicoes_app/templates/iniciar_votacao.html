@@ -11,8 +11,17 @@
         <h1>Iniciar Votação</h1>
         <form method="post">
             {% csrf_token %}
-            <button type="submit" class="btn btn-success">Iniciar</button>
+            <div class="form-group">
+                <label for="eleicao_id">Selecione o Local</label>
+                <select class="form-control" id="eleicao_id" name="eleicao_id">
+                    {% for eleicao in eleicoes %}
+                    <option>{{ eleicao.local_eleicao }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Iniciar Votação</button>
         </form>
     </div>
 </body>
 </html>
+

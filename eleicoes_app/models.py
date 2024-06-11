@@ -9,6 +9,7 @@ class Eleicao(models.Model):
     local_eleicao = models.CharField(max_length=255)
     hora_inicial = models.TimeField()
     hora_final = models.TimeField()
+    ativa = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.local_eleicao} - {self.data_eleicao}"

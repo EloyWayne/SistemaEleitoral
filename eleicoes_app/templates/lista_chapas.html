@@ -20,7 +20,7 @@
                 {% for chapa in chapas %}
                     <tr>
                         <td>{{ chapa.nome_chapa }}</td>
-                        <td>{{ chapa.eleicao }}</td>
+                        <td>{{ chapa.eleicao.local_eleicao}}</td>
                     </tr>
                 {% endfor %}
             </tbody>

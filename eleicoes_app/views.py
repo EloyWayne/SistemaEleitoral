@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from eleicoes_app.models import Candidato, CandidatoChapa, Cargo, Chapa, Eleicao, Eleitor
+from eleicoes_app.models import Candidato, CandidatoChapa, Cargo, Chapa, Eleicao, Eleitor, Voto
 from .forms import (
     CandidatoForm, CargoForm, EleicaoForm, ChapaForm, 
     CandidatoChapaForm, EleitorForm
@@ -75,13 +75,17 @@ def cadastrar_eleitor(request):
 
 def iniciar_votacao(request):
     if request.method == 'POST':
-        # Logic to start voting process
+        eleicao_id = request.POST.get('eleicao_id')
+        eleicao = Eleicao.objects.get(id=eleicao_id)
+        eleicao.ativa = True
+        eleicao.save()
         return redirect(reverse('lista_eleicoes'))
-    return render(request, 'iniciar_votacao.html')
+    eleicoes = Eleicao.objects.all()
+    return render(request, 'iniciar_votacao.html', {'eleicoes': eleicoes})
 
 def gerar_relatorio_inicializacao(request):
     if request.method == 'POST':
-        # Logic to generate initialization report
+        # Implementar lógica para gerar relatório
         return redirect(reverse('lista_relatorios'))
     return render(request, 'gerar_relatorio_inicializacao.html')
 
@@ -89,19 +93,34 @@ def votar(request):
     if request.method == 'POST':
         cpf = request.POST.get('cpf')
         senha = request.POST.get('senha')
-        # Logic to handle voting process
-        return redirect(reverse('confirmar_voto'))
-    return render(request, 'votar.html')
+        try:
+            eleitor = Eleitor.objects.get(cpf=cpf, senha=senha)
+            eleicao_id = request.POST.get('eleicao_id')
+            eleicao = Eleicao.objects.get(id=eleicao_id, ativa=True)
+            Voto.objects.create(eleicao=eleicao, eleitor=eleitor)
+            return redirect(reverse('confirmar_voto'))
+        except Eleitor.DoesNotExist:
+            # Lógica de erro
+            pass
+        except Eleicao.DoesNotExist:
+            # Lógica de erro
+            pass
+    eleicoes = Eleicao.objects.filter(ativa=True)
+    return render(request, 'votar.html', {'eleicoes': eleicoes})
 
 def encerrar_votacao(request):
     if request.method == 'POST':
-        # Logic to end voting process
+        eleicao_id = request.POST.get('eleicao_id')
+        eleicao = Eleicao.objects.get(id=eleicao_id)
+        eleicao.ativa = False
+        eleicao.save()
         return redirect(reverse('lista_eleicoes'))
-    return render(request, 'encerrar_votacao.html')
+    eleicoes = Eleicao.objects.all()
+    return render(request, 'encerrar_votacao.html', {'eleicoes': eleicoes})
 
 def gerar_relatorio_fechamento(request):
     if request.method == 'POST':
-        # Logic to generate closing report
+        # Implementar lógica para gerar relatório
         return redirect(reverse('lista_relatorios'))
     return render(request, 'gerar_relatorio_fechamento.html')
 #####
