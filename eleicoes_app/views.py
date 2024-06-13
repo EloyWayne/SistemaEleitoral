@@ -1,3 +1,4 @@
+from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
@@ -93,21 +94,39 @@ def votar(request):
     if request.method == 'POST':
         cpf = request.POST.get('cpf')
         senha = request.POST.get('senha')
+        eleicao_id = request.POST.get('eleicao_id')
+        candidato_id = request.POST.get('candidato_id')
+        
         try:
             eleitor = Eleitor.objects.get(cpf=cpf, senha=senha)
-            eleicao_id = request.POST.get('eleicao_id')
-            eleicao = Eleicao.objects.get(id=eleicao_id, ativa=True)
-            Voto.objects.create(eleicao=eleicao, eleitor=eleitor)
-            return redirect(reverse('confirmar_voto'))
         except Eleitor.DoesNotExist:
-            # Lógica de erro
-            pass
+            return HttpResponseBadRequest("Eleitor não encontrado ou senha incorreta.")
+        
+        try:
+            eleicao = Eleicao.objects.get(id=eleicao_id, ativa=True)
         except Eleicao.DoesNotExist:
-            # Lógica de erro
-            pass
-    eleicoes = Eleicao.objects.filter(ativa=True)
-    return render(request, 'votar.html', {'eleicoes': eleicoes})
+            return HttpResponseBadRequest("Eleição não encontrada ou não está ativa.")
+        
+        # Verifica se o eleitor já votou nesta eleição
+        if Voto.objects.filter(eleicao=eleicao, eleitor=eleitor).exists():
+            return HttpResponseBadRequest("Este eleitor já votou nesta eleição.")
+        
+        try:
+            candidato = Candidato.objects.get(id=candidato_id)
+        except Candidato.DoesNotExist:
+            return HttpResponseBadRequest("Candidato não encontrado.")
 
+        novo_voto = Voto.objects.create(eleicao=eleicao, eleitor=eleitor, candidato=candidato)
+        
+        if candidato:
+            candidato.numero_votos += 1
+            candidato.save()
+
+        return redirect(reverse('confirmar_voto'))
+
+    eleicoes = Eleicao.objects.filter(ativa=True)
+    candidatos = Candidato.objects.all()
+    return render(request, 'votar.html', {'eleicoes': eleicoes, 'candidatos': candidatos})
 def encerrar_votacao(request):
     if request.method == 'POST':
         eleicao_id = request.POST.get('eleicao_id')
@@ -148,3 +167,7 @@ def lista_candidatos_chapa(request):
 def lista_eleitores(request):
     eleitores = Eleitor.objects.all()
     return render(request, 'lista_eleitores.html', {'eleitores': eleitores})
+
+def confirmar_voto(request):
+    ultimo_voto = Voto.objects.latest('id')  # Obtém o último voto registrado
+    return render(request, 'confirmar_voto.html', {'voto': ultimo_voto})

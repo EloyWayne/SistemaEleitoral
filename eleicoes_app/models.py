@@ -19,6 +19,7 @@ class Candidato(models.Model):
     nome = models.CharField(max_length=255)
     cpf = models.CharField(max_length=11, unique=True)
     endereco = models.CharField(max_length=255)
+    numero_votos = models.IntegerField(default=0)
 
     def __str__(self):
         return self.nome
@@ -83,11 +84,12 @@ class LiberacaoEleitor(models.Model):
 # RF09 - Cadastro de Votos
 class Voto(models.Model):
     eleicao = models.ForeignKey(Eleicao, on_delete=models.CASCADE)
+    eleitor = models.ForeignKey(Eleitor, on_delete=models.CASCADE)
     candidato = models.ForeignKey(Candidato, on_delete=models.CASCADE)
     numero_votos = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"Voto - {self.candidato} - {self.eleicao}"
+        return f"{self.eleitor} - {self.eleicao} - {self.candidato}"
 
 # RF10 - Relatório de Fechamento da Eleição
 class RelatorioFechamento(models.Model):

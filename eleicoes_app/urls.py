@@ -20,4 +20,5 @@ urlpatterns = [
     path('votar/', views.votar, name='votar'),
     path('encerrar_votacao/', views.encerrar_votacao, name='encerrar_votacao'),
     path('gerar_relatorio_fechamento/', views.gerar_relatorio_fechamento, name='gerar_relatorio_fechamento'),
+    path('confirmar_voto/', views.confirmar_voto, name='confirmar_voto'),
 ]

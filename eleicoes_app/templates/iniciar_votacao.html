@@ -15,7 +15,7 @@
                 <label for="eleicao_id">Selecione o Local</label>
                 <select class="form-control" id="eleicao_id" name="eleicao_id">
                     {% for eleicao in eleicoes %}
-                    <option>{{ eleicao.local_eleicao }}</option>
+                    <option value="{{ eleicao.id }}">{{ eleicao.local_eleicao }}</option>
                     {% endfor %}
                 </select>
             </div>
