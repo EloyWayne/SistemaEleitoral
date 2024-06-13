@@ -8,12 +8,14 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Cadastrar Eleição</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Salvar</button>
-        </form>
+        <div class="col-md-6 mx-auto">
+            <h1 class="text-center mb-4">Cadastrar Eleição</h1>
+            <form method="post" class="shadow p-4 rounded">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

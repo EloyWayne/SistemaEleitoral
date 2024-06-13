@@ -1,8 +1,12 @@
-from django.urls import path
+from django.urls import include, path
+from django.contrib import admin
+from eleicoes_app import admin
 from . import views
 
 urlpatterns = [
-    path('', views.pagina_inicial, name='pagina_inicial'), 
+    path('', views.pagina_inicial, name='pagina_inicial'),
+    path('listar_liberacoes/', views.listar_liberacoes, name='listar_liberacoes'),
+    path('liberar_eleitor/', views.liberar_eleitor, name='liberar_eleitor'),
     path('candidatos/', views.cadastrar_candidato, name='cadastrar_candidato'),
     path('lista/', views.lista_candidatos, name='lista_candidatos'),
     path('lista_cargos/', views.lista_cargos, name='lista_cargos'),
@@ -21,4 +25,5 @@ urlpatterns = [
     path('encerrar_votacao/', views.encerrar_votacao, name='encerrar_votacao'),
     path('gerar_relatorio_fechamento/', views.gerar_relatorio_fechamento, name='gerar_relatorio_fechamento'),
     path('confirmar_voto/', views.confirmar_voto, name='confirmar_voto'),
+    path('listar_locais/', views.listar_locais, name='listar_locais'),
 ]

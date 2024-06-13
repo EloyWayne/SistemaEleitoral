@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liberar Eleitor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="col-md-6 mx-auto">
+            <h1 class="text-center mb-4">Liberar Eleitor</h1>
+            <form method="post" class="shadow p-4 rounded">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="cpf_eleitor">CPF do Eleitor</label>
+                    <input type="text" class="form-control" id="cpf_eleitor" name="cpf_eleitor" required>
+                </div>
+                <div class="form-group">
+                    <label for="eleicao_id">Eleição</label>
+                    <select class="form-control" id="eleicao_id" name="eleicao_id" required>
+                        {% for eleicao in eleicoes %}
+                        <option value="{{ eleicao.id }}">{{ eleicao.local_eleicao }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Liberar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

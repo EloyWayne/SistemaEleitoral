@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locais de Votação</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="text-center mb-4">
+            <h1>Locais de Votação</h1>
+        </div>
+        <div class="mb-4">
+            <h2 class="text-primary text-center">Locais Ativos</h2>
+            <ul class="list-group">
+                {% for eleicao in eleicoes_ativas %}
+                <li class="list-group-item">{{ eleicao.local_eleicao }}</li>
+                {% empty %}
+                <li class="list-group-item text-center text-muted">Nenhum local ativo no momento.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="mb-4">
+            <h2 class="text-primary text-center">Locais Inativos</h2>
+            <ul class="list-group">
+                {% for eleicao in eleicoes_inativas %}
+                <li class="list-group-item">{{ eleicao.local_eleicao }}</li>
+                {% empty %}
+                <li class="list-group-item text-center text-muted">Nenhum local inativo no momento.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="text-center">
+            <a href="{% url 'pagina_inicial' %}" class="btn btn-primary">Retornar a Página Inicial</a>
+        </div>
+    </div>
+</body>
+</html>

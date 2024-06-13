@@ -13,6 +13,7 @@
             <h1>Sistema Eleitoral</h1>
             <nav>
                 <ul class="nav">
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'listar_locais' %}">Locais de Votação</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="{% url 'lista_candidatos' %}">Lista de Candidatos</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="{% url 'lista_cargos' %}">Lista de Cargos</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="{% url 'lista_eleicoes' %}">Lista de Eleições</a></li>
@@ -24,6 +25,8 @@
                     <li class="nav-item"><a class="nav-link text-white" href="{% url 'votar' %}">Votar</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="{% url 'encerrar_votacao' %}">Encerrar Votação</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="{% url 'gerar_relatorio_fechamento' %}">Gerar Relatório de Fechamento</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'liberar_eleitor' %}">Liberar Eleitor</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'listar_liberacoes' %}">Listar Liberações</a></li>
                 </ul>
             </nav>
         </div>

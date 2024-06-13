@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Liberações</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Liberações de Eleitores</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>CPF do Eleitor</th>
+                    <th>Status de Liberação</th>
+                    <th>Data e Hora de Início</th>
+                    <th>Eleição</th>
+                    <th>Usuário que Liberou</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for liberacao in liberacoes %}
+                <tr>
+                    <td>{{ liberacao.cpf_eleitor }}</td>
+                    <td>{{ liberacao.status_liberacao|yesno:"Liberado,Não liberado" }}</td>
+                    <td>{{ liberacao.data_hora_inicio }}</td>
+                    <td>{{ liberacao.eleicao.local_eleicao }}</td>
+                    <td>{{ liberacao.usuario_liberacao.username }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">Nenhuma liberação encontrada.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'liberar_eleitor' %}" class="btn btn-primary">Nova Liberação</a>
+    </div>
+</body>
+</html>

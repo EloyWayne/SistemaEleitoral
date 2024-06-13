@@ -9,9 +9,17 @@
 <body>
     <div class="container mt-5">
         <h1>Encerrar Votação</h1>
-        <form method="post">
+        <form method="post" action="{% url 'encerrar_votacao' %}">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Encerrar</button>
+            <div class="form-group">
+                <label for="eleicao_id">Selecione o Local</label>
+                <select class="form-control" id="eleicao_id" name="eleicao_id">
+                    {% for eleicao in eleicoes %}
+                    <option value="{{ eleicao.id }}">{{ eleicao.local_eleicao }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-danger">Encerrar Votação</button>
         </form>
     </div>
 </body>

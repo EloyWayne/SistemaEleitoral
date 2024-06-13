@@ -1,12 +1,27 @@
-from django.http import HttpResponseBadRequest
+from datetime import datetime
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login as auth_login, logout as auth_logout
+from django.contrib.auth.decorators import login_required 
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.http import HttpResponseBadRequest
+from .models import LiberacaoEleitor, Eleicao, Candidato, Cargo, Chapa, CandidatoChapa, Eleitor, Voto
+from .forms import CandidatoForm, CargoForm, EleicaoForm, ChapaForm, CandidatoChapaForm, EleitorForm
 
-from eleicoes_app.models import Candidato, CandidatoChapa, Cargo, Chapa, Eleicao, Eleitor, Voto
-from .forms import (
-    CandidatoForm, CargoForm, EleicaoForm, ChapaForm, 
-    CandidatoChapaForm, EleitorForm
-)
+# def login(request):
+#     if request.method == 'POST':
+#         form = AuthenticationForm(request, request.POST)
+#         if form.is_valid():
+#             user = form.get_user()
+#             auth_login(request, user)
+#             return redirect(reverse('pagina_inicial'))
+#     else:
+#         form = AuthenticationForm()
+#     return render(request, 'login.html', {'form': form})
+
+# def logout(request):
+#     auth_logout(request)
+#     return redirect(reverse('pagina_inicial'))
 
 def pagina_inicial(request):
     return render(request, 'pagina_inicial.html')
@@ -72,23 +87,15 @@ def cadastrar_eleitor(request):
         form = EleitorForm()
     return render(request, 'cadastrar_eleitor.html', {'form': form})
 
-#####
-
 def iniciar_votacao(request):
     if request.method == 'POST':
         eleicao_id = request.POST.get('eleicao_id')
         eleicao = Eleicao.objects.get(id=eleicao_id)
         eleicao.ativa = True
         eleicao.save()
-        return redirect(reverse('lista_eleicoes'))
+        return redirect(reverse('listar_locais'))
     eleicoes = Eleicao.objects.all()
     return render(request, 'iniciar_votacao.html', {'eleicoes': eleicoes})
-
-def gerar_relatorio_inicializacao(request):
-    if request.method == 'POST':
-        # Implementar lógica para gerar relatório
-        return redirect(reverse('lista_relatorios'))
-    return render(request, 'gerar_relatorio_inicializacao.html')
 
 def votar(request):
     if request.method == 'POST':
@@ -127,23 +134,70 @@ def votar(request):
     eleicoes = Eleicao.objects.filter(ativa=True)
     candidatos = Candidato.objects.all()
     return render(request, 'votar.html', {'eleicoes': eleicoes, 'candidatos': candidatos})
+
 def encerrar_votacao(request):
     if request.method == 'POST':
         eleicao_id = request.POST.get('eleicao_id')
         eleicao = Eleicao.objects.get(id=eleicao_id)
         eleicao.ativa = False
         eleicao.save()
-        return redirect(reverse('lista_eleicoes'))
+        return redirect(reverse('listar_locais'))
     eleicoes = Eleicao.objects.all()
     return render(request, 'encerrar_votacao.html', {'eleicoes': eleicoes})
+
+def liberar_eleitor(request):
+    if request.method == 'POST':
+        cpf_eleitor = request.POST.get('cpf_eleitor')
+        eleicao_id = request.POST.get('eleicao_id')
+        data_hora_inicio_str = request.POST.get('data_hora_inicio')
+
+        # Converter a string para um objeto datetime
+        try:
+            data_hora_inicio = datetime.strptime(data_hora_inicio_str, '%Y-%m-%dT%H:%M')
+        except ValueError:
+            return HttpResponseBadRequest('Formato de data inválido')
+
+        # Verificar se a eleição existe
+        try:
+            eleicao = Eleicao.objects.get(id=eleicao_id)
+        except Eleicao.DoesNotExist:
+            return HttpResponseBadRequest('Eleição não encontrada')
+
+        # Criar a instância de LiberacaoEleitor
+        liberacao = LiberacaoEleitor.objects.create(
+            cpf_eleitor=cpf_eleitor,
+            status_liberacao=True,
+            eleicao=eleicao,
+            usuario_liberacao=request.user,  # Utilizando o usuário atual
+            data_hora_inicio=make_aware(data_hora_inicio)  # Garante que o datetime tenha informação de fuso horário
+        )
+
+        return redirect(reverse('listar_liberacoes'))
+
+    # Se o método não for POST, renderizar o formulário com as eleições disponíveis
+    eleicoes = Eleicao.objects.all()
+    return render(request, 'liberar_eleitor.html', {'eleicoes': eleicoes})
+
+
+def listar_liberacoes(request):
+    liberacoes = LiberacaoEleitor.objects.all()
+    return render(request, 'listar_liberacoes.html', {'liberacoes': liberacoes})
+
+####
+
+def gerar_relatorio_inicializacao(request):
+    if request.method == 'POST':
+        # Implementar lógica para gerar relatório
+        return redirect(reverse('lista_relatorios'))
+    return render(request, 'gerar_relatorio_inicializacao.html')
 
 def gerar_relatorio_fechamento(request):
     if request.method == 'POST':
         # Implementar lógica para gerar relatório
         return redirect(reverse('lista_relatorios'))
     return render(request, 'gerar_relatorio_fechamento.html')
-#####
 
+####
 def lista_candidatos(request):
     candidatos = Candidato.objects.all()
     return render(request, 'lista_candidatos.html', {'candidatos': candidatos})
@@ -167,6 +221,15 @@ def lista_candidatos_chapa(request):
 def lista_eleitores(request):
     eleitores = Eleitor.objects.all()
     return render(request, 'lista_eleitores.html', {'eleitores': eleitores})
+
+def listar_locais(request):
+    eleicoes_ativas = Eleicao.objects.filter(ativa=True)
+    eleicoes_inativas = Eleicao.objects.filter(ativa=False)
+    context = {
+        'eleicoes_ativas': eleicoes_ativas,
+        'eleicoes_inativas': eleicoes_inativas,
+    }
+    return render(request, 'listar_locais.html', context)
 
 def confirmar_voto(request):
     ultimo_voto = Voto.objects.latest('id')  # Obtém o último voto registrado

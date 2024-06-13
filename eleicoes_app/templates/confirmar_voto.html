@@ -8,16 +8,17 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Voto Confirmado</h1>
+        <h1 class="text-center mb-4">Voto Confirmado</h1>
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Detalhes do Voto</h5>
-                <p class="card-text">Eleitor: {{ voto.eleitor }}</p>
-                <p class="card-text">Eleição: {{ voto.eleicao }}</p>
-                <p class="card-text">Candidato: {{ voto.candidato }}</p>
-                <p class="card-text">Número de Votos: {{ voto.numero_votos }}</p>
+                <p class="card-text"><strong>Eleitor:</strong> {{ voto.eleitor }}</p>
+                <p class="card-text"><strong>Eleição:</strong> {{ voto.eleicao }}</p>
+                <p class="card-text"><strong>Candidato:</strong> {{ voto.candidato }}</p>
+                <p class="card-text"><strong>Número de Votos:</strong> {{ voto.numero_votos }}</p>
             </div>
         </div>
+        <a href="{% url 'pagina_inicial' %}" class="btn btn-primary mt-3">Retornar à Página Inicial</a>
     </div>
 </body>
 </html>
